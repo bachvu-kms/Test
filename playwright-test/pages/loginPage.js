@@ -6,7 +6,7 @@ class LoginPage extends Page {
   }
 
   elements = {
-    txtUsername: () => this.page.locator('//*[@name="userName"]'),
+    txtUsername: () => this.page.locator('//*[@name="userName1"]'),
     txtPassword: () => this.page.locator('//*[@name="password"]'),
     btnSignIn: () => this.page.locator('//*[@name="submit"]'),
   }
