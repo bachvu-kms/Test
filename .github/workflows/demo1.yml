@@ -1,8 +1,37 @@
 name: hello-world
-'on': push
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
 jobs:
-  my-job:
+  my-job-test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./playwright-test
+        
+    strategy:
+      matrix:
+        node-version: [22.3.0]
+    
+    env:
+      MODE: "dev"
+    
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Install Library
+        run: |
+          npm ci
+          npx playwright install --with-deps
+      - name: Test Web App
+        run:  npx playwright test
+
