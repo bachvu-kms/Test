@@ -1,7 +1,7 @@
 name: Chrome
 on: push
 jobs:
-    my-job-test:
+    setup-cypress:
         timeout-minutes: 60
         runs-on: ubuntu-latest
         defaults:
