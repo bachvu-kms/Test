@@ -33,7 +33,7 @@ jobs:
             
     cypress-run:
         runs-on: ubuntu-22.04
-        needs: my-job-test
+        needs: setup-cypress
         steps:
         - name: Checkout
           uses: actions/checkout@v4
